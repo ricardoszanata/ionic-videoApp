@@ -74,6 +74,24 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** skygreen **/
+  --ion-color-skygreen: #87f112;
+  --ion-color-skygreen-rgb: 135,241,18;
+  --ion-color-skygreen-contrast: #000000;
+  --ion-color-skygreen-contrast-rgb: 0,0,0;
+  --ion-color-skygreen-shade: #77d410;
+  --ion-color-skygreen-tint: #93f22a;
+}
+
+/** skygreen **/
+.ion-color-skygreen {
+  --ion-color-base: var(--ion-color-skygreen);
+  --ion-color-base-rgb: var(--ion-color-skygreen-rgb);
+  --ion-color-contrast: var(--ion-color-skygreen-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-skygreen-contrast-rgb);
+  --ion-color-shade: var(--ion-color-skygreen-shade);
+  --ion-color-tint: var(--ion-color-skygreen-tint);
 }
 
 @media (prefers-color-scheme: dark) {
