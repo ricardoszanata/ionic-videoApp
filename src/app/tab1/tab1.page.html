@@ -1,35 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="dark">
-    <ion-title> Filmes </ion-title>
+    <ion-title> {{ titulo }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+<ion-content [fullscreen]="true" color="light">
+  <ion-searchbar placeholder="Buscar"> </ion-searchbar>
+
   <ion-list>
-    <ion-item-sliding>
-    <ion-item lines="full">
-      <ion-thumbnail slot="start">
-        <img
-          src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mDwR1rFiXX4bEUTNCtPVYeMdru3.jpg"
-        />
-      </ion-thumbnail>
-      <ion-label class="ion-text-wrap">
-        <div>
-          <h1>Terra Brasil - Especial Paraty (2020)</h1>
-          <p>11/11/2020 (BR) - 34m</p>
-          <p>Documentário</p>
-        </div>
-      </ion-label>
-      <ion-chip color="primary" outline>
-        <ion-label>100%</ion-label>
-      </ion-chip>
-    </ion-item>
-    <ion-item-options side="end">
-      <ion-item-option color="skygreen" (click)="confirmarFavorito()">
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
+    <ion-item-sliding *ngFor="let filme of listaVideos">
+      <ion-item lines="full" (click)="exibirFilme(filme)">
+        <ion-thumbnail slot="start">
+          <img [src]="filme.cartaz" />
+        </ion-thumbnail>
+
+        <ion-label class="ion-text-wrap">
+          <div>
+            <h1>{{filme.nome}}</h1>
+            <p>{{filme.lancamento}} - {{filme.duracao}}</p>
+            <ion-badge color="light" *ngFor="let genero of filme.generos">
+              {{genero}}
+            </ion-badge>
+          </div>
+        </ion-label>
+
+        <ion-chip color="success" outline>
+          <ion-label>{{filme.classificacao}}%</ion-label>
+        </ion-chip>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="laranja" (click)="exibirAlertaFavorito()">
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
