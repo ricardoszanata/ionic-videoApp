@@ -1,6 +1,10 @@
+import { IGenero } from './../models/IGenero.model';
+import { GeneroService } from './../services/genero.service';
+import { IListaFilmes, IFilmeApi } from './../models/IFilmeAPI.model';
+import { FilmeService } from './../services/filme.service';
 import { DadosService } from './../services/dados.service';
 import { IFilme } from '../models/IFilme.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -10,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
   titulo = 'Filmes';
 
@@ -32,43 +36,33 @@ export class Tab1Page {
       cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ArWn6gCi61b3b3hclD2L0LOk66k.jpg',
       generos: ['Ação', 'Aventura', 'Fantasia', 'Ficção científica'],
       pagina: '/liga-justica'
-    },
-    {
-      nome: 'The Matrix (1999)',
-      lancamento: '31/03/1999',
-      duracao: '1h 50m',
-      classificacao: 100,
-      cartaz: 'https://cdn.culturagenial.com/imagens/mv5bnzqzotk3otatndq0zi00ztvklwi0mtetmdllzjnkyznjntc4l2ltywdlxkeyxkfqcgdeqxvynju0otq0oty-v1-cke.jpg',
-      generos: ['Ação', 'Ficção científica'],
-      pagina: '/the-matrix'
-    },
-    {
-      nome: 'The Matrix Reloaded (2003)',
-      lancamento: '16/05/2003',
-      duracao: '1h 50m',
-      classificacao: 100,
-      cartaz: 'https://images-na.ssl-images-amazon.com/images/I/51AhfnN47xL._AC_SY445_.jpg',
-      generos: ['Ação', 'Ficção científica'],
-      pagina: '/the-matrix-reloaded'
-    },
-    {
-      nome: 'The Matrix Revolutions (2003)',
-      lancamento: '05/11/2003',
-      duracao: '1h 50m',
-      classificacao: 100,
-      cartaz: 'https://i.pinimg.com/originals/de/b7/33/deb7335fa11d8cb0e7d0ce6acf4033bc.jpg',
-      generos: ['Ação', 'Ficção científica'],
-      pagina: '/the-matrix'
     }
   ];
+
+  listaFilmes: IListaFilmes;
+
+  generos: string[] = [];
 
   constructor(
     public alertController: AlertController,
     public toastController: ToastController,
     public dadosService: DadosService,
+    public filmeService: FilmeService,
+    public generoService: GeneroService,
     public route: Router) { }
 
-  exibirFilme(filme: IFilme) {
+  buscarFilmes(evento: any) {
+    console.log(evento.target.value);
+    const busca = evento.target.value;
+    if (busca && busca.trim() !== '') {
+      this.filmeService.buscarFilmes(busca).subscribe(dados => {
+        console.log(dados);
+        this.listaFilmes = dados;
+      });
+    }
+  }
+
+  exibirFilme(filme: IFilmeApi) {
     this.dadosService.guardarDados('filme', filme);
     this.route.navigateByUrl('/dados-filme');
   }
@@ -103,6 +97,17 @@ export class Tab1Page {
       color: 'success'
     });
     toast.present();
+  }
+
+  ngOnInit() {
+    this.generoService.buscarGeneros().subscribe(dados => {
+      console.log('Generos: ', dados.genres);
+      dados.genres.forEach(genero => {
+        this.generos[genero.id] = genero.name;
+      });
+
+      this.dadosService.guardarDados('generos', this.generos);
+    });
   }
 
 }
