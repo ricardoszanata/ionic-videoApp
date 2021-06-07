@@ -27,7 +27,7 @@
 
         <ion-label class="ion-text-wrap">
           <div>
-            <h1>{{Serie.title}}</h1>
+            <h1>{{Serie.original_title}}</h1>
             <p>{{Serie.release_date | date: 'shortDate'}}</p>
             <ion-badge color="light" *ngFor="let idGenero of Serie.genre_ids">
               {{generos[idGenero]}}

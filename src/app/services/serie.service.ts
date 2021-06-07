@@ -21,7 +21,7 @@ export class SerieService {
   ) {}
 
   buscarSeries(busca: string): Observable<IListaSeries> {
-    const url = `${this.apiURL}search/movie${this.key}&language=${this.lingua}&region=${this.regiao}&query=${busca}`;
+    const url = `${this.apiURL}search/tv${this.key}&language=${this.lingua}&region=${this.regiao}&query=${busca}`;
 
     return this.http.get<IListaSeries>(url).pipe(
       map((retorno) => retorno),
