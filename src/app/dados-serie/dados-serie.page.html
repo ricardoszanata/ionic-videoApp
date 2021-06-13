@@ -20,10 +20,10 @@
 
     <ion-card-content>
       <h1>
-        {{serie.title}} -
-        <ion-chip color="success"> {{serie.vote_average}}%</ion-chip>
+        {{serie.name}} -
+        <ion-chip color="success"> {{serie.popularity}}%</ion-chip>
       </h1>
-      <p>{{serie.release_date | date:'shortDate'}}</p>
+      <p>{{serie.original_language}}</p>
     </ion-card-content>
     <ion-item>
       <ion-badge color="light" *ngFor="let idGenero of serie.genre_ids">

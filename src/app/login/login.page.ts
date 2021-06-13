@@ -9,14 +9,12 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
   email: string;
   senha: string;
 
-  constructor(public toastController: ToastController, private route: Router) { }
+  constructor(public toastController: ToastController, private route: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login() {
     if (this.email === 'admin@euprogramando.com.br' && this.senha === 'admin') {
@@ -31,9 +29,8 @@ export class LoginPage implements OnInit {
     const toast = await this.toastController.create({
       message: texto,
       color: cor,
-      duration: 2000
+      duration: 2000,
     });
     toast.present();
   }
-
 }

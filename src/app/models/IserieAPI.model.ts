@@ -1,19 +1,13 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 export interface ISerieApi {
-  poster_path?: string;
-  first_air_date?: string;
-  overview?: string;
-  release_date?: string;
-  genre_ids?: number[];
-  id?: number;
-  original_title?: string;
-  original_language?: string;
-  title?: string;
-  backdrop_path?: string;
+  poster_path?:string;
   popularity?: number;
+  id?: number;
+  backdrop_path?: string;
+  origin_country?:string[];
+  genre_ids?: number[];
+  original_language?: string;
   vote_count?: number;
-  video?: boolean;
-  vote_average?: number;
   name?: string;
   original_name?: string;
 }
