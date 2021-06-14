@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./dados-filme/dados-filme.module').then(m => m.DadosFilmePageModule)
   },
   {
+    path: 'dados-serie',
+    loadChildren: () => import('./dados-serie/dados-serie.module').then(m => m.DadosSeriePageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },

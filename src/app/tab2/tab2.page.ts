@@ -25,7 +25,7 @@ export class Tab2Page implements OnInit{
     public alertController: AlertController,
     public toastController: ToastController,
     public dadosService: DadosService,
-    public SerieService: SerieService,
+    public serieService: SerieService,
     public generoService: GeneroService,
     public route: Router) { }
 
@@ -33,7 +33,7 @@ export class Tab2Page implements OnInit{
     console.log(evento.target.value);
     const busca = evento.target.value;
     if (busca && busca.trim() !== '') {
-      this.SerieService.buscarSeries(busca).subscribe(dados => {
+      this.serieService.buscarSeries(busca).subscribe(dados => {
         console.log(dados);
         this.listaSeries = dados;
       });

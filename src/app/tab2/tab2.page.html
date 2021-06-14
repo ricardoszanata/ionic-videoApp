@@ -11,35 +11,35 @@
   <ion-list *ngIf="listaSeries">
     <ion-item lines="none" *ngIf="listaSeries.results.length === 0">
       <ion-label class="ion-text-center">
-        Não há Series para exibir...
+        Não há series para exibir...
       </ion-label>
     </ion-item>
 
-    <ion-item-sliding *ngFor="let Serie of listaSeries.results">
-      <ion-item lines="full" (click)="exibirSerie(Serie)">
+    <ion-item-sliding *ngFor="let serie of listaSeries.results">
+      <ion-item lines="full" (click)="exibirSerie(serie)">
         <ion-thumbnail slot="start">
           <img
-            *ngIf="Serie.poster_path"
-            src="https://www.themoviedb.org/t/p/w500/{{Serie.poster_path}}"
+            *ngIf="serie.backdrop_path"
+            src="https://www.themoviedb.org/t/p/w500/{{serie.backdrop_path}}"
           />
-          <ion-icon *ngIf="!Serie.poster_path" name="videocam-off"></ion-icon>
+          <ion-icon *ngIf="!serie.backdrop_path" name="videocam-off"></ion-icon>
         </ion-thumbnail>
 
         <ion-label class="ion-text-wrap">
           <div>
-            <h1>{{Serie.original_title}}</h1>
-            <p>{{Serie.release_date | date: 'shortDate'}}</p>
-            <ion-badge color="light" *ngFor="let idGenero of Serie.genre_ids">
+            <h1>{{serie.name}}</h1>
+            <p>{{serie.episode_number}}</p>
+            <ion-badge color="light" *ngFor="let idGenero of serie.genre_ids">
               {{generos[idGenero]}}
             </ion-badge>
           </div>
         </ion-label>
 
         <ion-chip
-          [color]="Serie.vote_average < 5 ? 'danger' : ((Serie.vote_average < 7) ? 'warning' : 'success')"
+          [color]="serie.vote_average < 5 ? 'danger' : ((serie.vote_average < 7) ? 'warning' : 'success')"
           outline
         >
-          <ion-label>{{Serie.vote_average}}</ion-label>
+          <ion-label>{{serie.vote_average}}</ion-label>
         </ion-chip>
       </ion-item>
 

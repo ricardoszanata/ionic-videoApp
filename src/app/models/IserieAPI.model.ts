@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 export interface ISerieApi {
-  poster_path?:string;
-  popularity?: number;
-  id?: number;
   backdrop_path?: string;
-  origin_country?:string[];
-  genre_ids?: number[];
-  original_language?: string;
-  vote_count?: number;
+  created_by?: string[];
+  id?: number;
+  credit_id?: string;
   name?: string;
-  original_name?: string;
+  gender?: number;
+  profile_path?: string;
+  episode_number?:number;
+  genre_ids?: number[];
+  vote_average?:number;
 }
 
 export interface IListaSeries {
